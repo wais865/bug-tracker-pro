@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+jobs:
+  unit-tests-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version: '1.25'
+          cache-dependency-path: bugtracker-backend/go.sum
+
+      - name: execute backend unit tests
+        working-directory: ./bugtracker-backend
+        run: |
+          go test -v ./...
+        
+
