@@ -22,6 +22,14 @@ jobs:
         working-directory: ./bugtracker-backend
         run: |
           go test -v ./...
+
+      - name: publish backend test report
+        uses: dorny/test-reporter@v3
+        if: always()
+        with:
+          name: backend unit tests report
+          path: bugtracker-backend/test-results.xml
+          reporter: jest-junit
   
   
   unit-tests-frontend:
@@ -43,7 +51,7 @@ jobs:
           npm ci
           npm test
 
-      - name: test report
+      - name: publish frontend test report
         uses: dorny/test-reporter@v3
         if: always()
         with:
