@@ -131,8 +131,17 @@ jobs:
 
       - name: Run Api Test
         working-directory: ./tests-api
+        env:
+          CI: "1"
         run: |
           npm ci
+          npx playwright test
+
+      - name: E2E api test
+        working-directory: ./tests-e2e
+        run: |
+          npm ci
+          npx playwright install
           npx playwright test
 
       - name: shutdown Application
