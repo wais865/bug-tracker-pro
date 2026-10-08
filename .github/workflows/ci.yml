@@ -160,7 +160,7 @@ jobs:
         uses: dorny/test-reporter@v3
         with:
           name: Api test reports
-          path: ./test-api/test-results/*.xml
+          path: ./tests-api/test-results/*.xml
           reporter: jest-junit
 
       
