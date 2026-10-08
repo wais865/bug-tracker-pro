@@ -59,7 +59,11 @@ jobs:
         working-directory: ./bugtracker-frontend
         run: |
           npm ci
-          npm test
+          npm test | tee full-output.txt
+
+          echo "## Frontend Test Output" >> $GITHUB_STEP_SUMMARY
+          cat full-output.txt >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
 
       - name: publish frontend test report
         uses: dorny/test-reporter@v3
