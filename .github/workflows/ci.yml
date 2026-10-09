@@ -172,7 +172,7 @@ jobs:
           path: ./tests-e2e/test-results
           retention-days: 30
       
-      - name: upload Api test playwright report
+      - name: upload Api test playwright report into artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -186,6 +186,22 @@ jobs:
         with:
           name: e2e-test-playwright-report
           path: ./tests-e2e/playwright-report/
+          retention-days: 30
+
+      - name: upload performance test raw result into artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-test-raw-report
+          path: ./tests-perf/summary.json
+          retention-days: 30
+        
+      - name: upload performance test Html result into artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-test-raw-report
+          path: ./tests-perf/perf-results.html
           retention-days: 30
         
 
